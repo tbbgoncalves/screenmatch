@@ -1,5 +1,5 @@
 package br.com.alura.screenmatch.service;
 
-public interface IDataConverter {
+public interface IConversorDados {
     <T> T getData(String json, Class<T> classType);
 }
