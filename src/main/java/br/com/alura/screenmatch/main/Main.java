@@ -7,8 +7,6 @@ import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConversorDados;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,15 +21,15 @@ public class Main {
         System.out.println("Digite o nome da série a ser buscada:");
         var serieName = leitura.nextLine().replace(" ", "+");
 
-        String json = consumoApi.getData(URL + serieName + APIKEY);
-        DadosSerie dadosSerie = conversorDados.getData(json, DadosSerie.class);
+        String json = consumoApi.pegarDados(URL + serieName + APIKEY);
+        DadosSerie dadosSerie = conversorDados.pegarDados(json, DadosSerie.class);
 
         System.out.println(dadosSerie);
 
         List<DadosTemporada> dadosTemporadas = new ArrayList<>();
         for(int i = 1; i <= dadosSerie.totalTemporadas(); i++) {
-            json = consumoApi.getData(URL + serieName + "&season=" + i + APIKEY);
-            DadosTemporada dadosTemporada = conversorDados.getData(json, DadosTemporada.class);
+            json = consumoApi.pegarDados(URL + serieName + "&season=" + i + APIKEY);
+            DadosTemporada dadosTemporada = conversorDados.pegarDados(json, DadosTemporada.class);
             dadosTemporadas.add(dadosTemporada);
         }
 

@@ -7,7 +7,7 @@ public class ConversorDados implements IConversorDados {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public <T> T getData(String json, Class<T> classType) {
+    public <T> T pegarDados(String json, Class<T> classType) {
         try {
             return objectMapper.readValue(json, classType);
         } catch (JsonProcessingException e) {
